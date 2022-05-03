@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class doorOpen : MonoBehaviour
 {
-    bool czyOtwarte;
     public Animator animator;
     void Start()
     {
-        animator = animator.GetComponent<Animator>();
-        czyOtwarte = false;
+        animator = GetComponent<Animator>();
     }
-   
-   public void doorOpening()
-   {
-    if(!czyOtwarte)
+
+    public void dorOpen()
     {
-        animator.Play("Door",0,0.0f);
-        czyOtwarte = true;
+        animator.SetTrigger("Tr_Open");
     }
-    else
+    public void dorClose()
     {
-        animator.Play("DoorClose,0,0.0f");
-        czyOtwarte = false;
+        animator.SetTrigger("Tr_Close");
     }
-   }
+
+    
 }

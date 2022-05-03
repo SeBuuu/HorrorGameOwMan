@@ -6,17 +6,19 @@ public class playerMovment : MonoBehaviour
 {
     public CharacterController characterController;
     
-    public Transform groundCheck;
-    public float moveSpeed;
-    public float gravity = -10;
-    public float groundDistance = -0.4f;
-    public LayerMask groundMask;
-    public LayerMask drzwi;
+    [SerializeField] public Transform groundCheck;
+    [SerializeField] public Transform Camera;
+    [SerializeField] public float moveSpeed;
+    [SerializeField] public float gravity = -10;
+    [SerializeField] public float groundDistance = -0.4f;
+    [SerializeField] public LayerMask groundMask;
+    [SerializeField] public LayerMask drzwi;
 
-    Vector3 velocity;
-    bool isGrounded;
-    bool czyOtwiera;
-    public doorOpen doorOpen;
+    [SerializeField] Vector3 velocity;
+    [SerializeField] bool isGrounded;
+    [SerializeField] bool czyOtwiera = false;
+    [SerializeField] public doorOpen doorOpen;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,11 +61,18 @@ public class playerMovment : MonoBehaviour
             transform.localScale = new Vector3(objectScale.x,  objectScale.y = 1, objectScale.z);
             moveSpeed = 6;
         }
-        if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.forward),out RaycastHit hit,4f,drzwi) && Input.GetButtonDown("E"))
+
+        if(Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hit,3f,drzwi) && czyOtwiera == false && Input.GetButtonDown("E"))
         {
-            doorOpen.doorOpening();
-            
+            doorOpen.dorOpen();
+            czyOtwiera = true;
         }
+        else if (Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hit1,3f,drzwi) && czyOtwiera == true && Input.GetButtonDown("E"))
+        {
+            doorOpen.dorClose();
+            czyOtwiera = false;
+        }
+        
         
         
 
