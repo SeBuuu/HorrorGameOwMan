@@ -62,19 +62,19 @@ public class playerMovment : MonoBehaviour
             moveSpeed = 6;
         }
 
-        if(Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hit,3f,drzwi) && czyOtwiera == false && Input.GetButtonDown("E"))
+        if(Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hitinfo,3f,drzwi) && czyOtwiera == false && Input.GetButtonDown("E"))
         {
             doorOpen.dorOpen();
             czyOtwiera = true;
         }
-        else if (Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hit1,3f,drzwi) && czyOtwiera == true && Input.GetButtonDown("E"))
+        else if (Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out hitinfo,3f,drzwi) && czyOtwiera == true && Input.GetButtonDown("E"))
         {
             doorOpen.dorClose();
             czyOtwiera = false;
         }
         
         
-        
+        Debug.DrawRay(Camera.position,Camera.TransformDirection(Vector3.forward) * hitinfo.distance,Color.green);
 
 
     }
