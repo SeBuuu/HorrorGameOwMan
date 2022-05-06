@@ -19,8 +19,7 @@ public class playerMovment : MonoBehaviour
     [SerializeField] bool isGrounded;
     [SerializeField] bool czyOtwiera = false;
     [SerializeField] bool czyOtwieraszafke = false;
-    [SerializeField] public doorOpen doorOpen;
-    [SerializeField] public SzafkaOpen szafkaOpen;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -65,30 +64,7 @@ public class playerMovment : MonoBehaviour
             moveSpeed = 6;
         }
 
-        if(Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hitinfo,3f,drzwi) && czyOtwiera == false && Input.GetButtonDown("E"))
-        {
-            doorOpen.dorOpen();
-            czyOtwiera = true;
-        }
-        else if (Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out hitinfo,3f,drzwi) && czyOtwiera == true && Input.GetButtonDown("E"))
-        {
-            doorOpen.dorClose();
-            czyOtwiera = false;
-        }
-        if(Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out RaycastHit hitinfoszafka,3f,szafka) && czyOtwieraszafke == false && Input.GetButtonDown("E"))
-        {
-            szafkaOpen.szafkaOpen();
-            czyOtwieraszafke = true;
-        }
-        else if (Physics.Raycast(Camera.position,Camera.TransformDirection(Vector3.forward),out hitinfoszafka,3f,szafka) && czyOtwieraszafke == true && Input.GetButtonDown("E"))
-        {
-            szafkaOpen.szafkaClose();
-            czyOtwieraszafke = false;
-        }
-        
-        
-        Debug.DrawRay(Camera.position,Camera.TransformDirection(Vector3.forward) * hitinfo.distance,Color.green);
-
+       
 
     }
 }
